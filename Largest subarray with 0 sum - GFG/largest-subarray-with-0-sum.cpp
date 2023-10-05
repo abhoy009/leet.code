@@ -8,31 +8,29 @@ using namespace std;
 // } Driver Code Ends
 /*You are required to complete this function*/
 
-class Solution {
-public:
-    int maxLen(vector<int>& A, int n) {
-        unordered_map<int, int> sumMap; // Maps cumulative sum to index
-        int maxLength = 0;
-        int cumulativeSum = 0;
-
-        for (int i = 0; i < n; ++i) {
-            cumulativeSum += A[i];
-
-            if (cumulativeSum == 0) {
-                // If cumulative sum is 0, the subarray from the beginning has a 0 sum
-                maxLength = max(maxLength, i + 1);
-            } else if (sumMap.find(cumulativeSum) != sumMap.end()) {
-                // If cumulative sum already exists in the map, a subarray with 0 sum is found
-                maxLength = max(maxLength, i - sumMap[cumulativeSum]);
-            } else {
-                // Store the cumulative sum and its index in the map
-                sumMap[cumulativeSum] = i;
+class Solution{
+    public:
+    int maxLen(vector<int>&A, int n)
+    {   
+        // Your code here
+        unordered_map<int,int> mp;
+        
+        int sum = 0;
+        int ans = 0;
+        mp[0]= -1;
+        for(int i=0;i<n;i++){
+            sum +=A[i];
+            if(mp.find(sum) != mp.end()){
+               ans = max(ans,i-mp[sum]);
+            }
+            else{
+                mp[sum]= i;
             }
         }
-
-        return maxLength;
+        return ans;
     }
 };
+
 
 //{ Driver Code Starts.
 
