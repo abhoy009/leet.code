@@ -5,7 +5,7 @@ public:
         long long totalCost = 0;
         vector<vector<long long>> minCost(26, vector<long long>(26, INT_MAX));
 
-        for (int i = 0; i < original.size(); ++i) {
+        for (int i = 0; i < original.size(); i++) {
             int startChar = original[i] - 'a';
             int endChar = changed[i] - 'a';
             minCost[startChar][endChar] =
